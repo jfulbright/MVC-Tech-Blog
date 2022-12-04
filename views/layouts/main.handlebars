@@ -1,43 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project 2 Template!</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1, maximum-scale=1.0'
+    />
+    <title>Tech Blog</title>
 
-<body>
-  <div class="">
-    <header class="">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Project 2 Template</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
+    <!-- CSS  -->
+    <link
+      href='https://fonts.googleapis.com/icon?family=Material+Icons'
+      rel='stylesheet'
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
+    />
+    <link
+      href='/css/style.css'
+      type='text/css'
+      rel='stylesheet'
+      media='screen,projection'
+    />
+  </head>
+
+  <body>
+    <nav class='light-blue lighten-1' role='navigation'>
+      <div class='nav-wrapper container'><a
+          id='logo-container'
+          href='#'
+          class='brand-logo'
+        >My Development Blog</a>
+        <ul class='right hide-on-med-and-down'>
+          <li><a href='/'>Homepage</a></li>
+          <!-- Conditionally render login or logout links -->
+          {{#if logged_in}}
+            <li><a href='/profile'>My profile</a></li>
+
+            <li><button
+                class='btn waves-effect waves-light red lighten-2'
+                id='logout'
+              >logout</button></li>
+          {{else}}
+            <a href='/login'>login</a>
+          {{/if}}
+        </ul>
+
+        <ul id='nav-mobile' class='sidenav'>
+          <li><a href='#'>Navbar Link</a></li>
+        </ul>
+        <a href='#' data-target='nav-mobile' class='sidenav-trigger'><i
+            class='material-icons'
+          >menu</i></a>
+      </div>
+    </nav>
+
+    <div class='section no-pad-bot' id='index-banner'>
+      <div class='container'>
+        <br /><br />
+        <h1 class='header center orange-text'>My Dev Blog</h1>
+        <div class='row center'>
+          <h5 class='header col s12 light'>A reflection of my journey to
+            full-stack develpment</h5>
+        </div>
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
+          <div class='row center'>
+            <a
+              href='http://materializecss.com/getting-started.html'
+              id='download-button'
+              class='btn-large waves-effect waves-light orange'
+            >Create a Post</a>
+          </div>
         {{/if}}
-      </nav>
-    </header>
-    <main class="">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
+        <br /><br />
 
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-</body>
+      </div>
+    </div>
+
+    <main class=''>
+      <div class='container'>
+        <!-- Render the sub layout -->
+        {{{body}}}
+      </div>
+      <br /><br />
+    </main>
+
+    <footer class='page-footer orange'>
+
+      <div class='container'>
+        <div class='row'>
+          <div class='col l6 s12'>
+            <h5 class='white-text'>Company Bio</h5>
+            <p class='grey-text text-lighten-4'>We are a team of college
+              students working on this project like it's our full time job. Any
+              amount would help support and continue development on this project
+              and is greatly appreciated.</p>
+          </div>
+          {{#if logged_in}}
+            <div class='col l3 s12'>
+              <h5 class='white-text'>Settings</h5>
+              <ul>
+                <li><a class='white-text' href='#!'>Link 1</a></li>
+                <li><a class='white-text' href='#!'>Link 2</a></li>
+                <li><a class='white-text' href='#!'>Link 3</a></li>
+                <li><a class='white-text' href='#!'>Link 4</a></li>
+              </ul>
+            </div>
+            <div class='col l3 s12'>
+              <h5 class='white-text'>Connect</h5>
+              <ul>
+                <li><a class='white-text' href='#!'>Link 1</a></li>
+                <li><a class='white-text' href='#!'>Link 2</a></li>
+                <li><a class='white-text' href='#!'>Link 3</a></li>
+                <li><a class='white-text' href='#!'>Link 4</a></li>
+              </ul>
+            </div>
+          {{/if}}
+        </div>
+
+      </div>
+      <div class='footer-copyright'>
+        <div class='container'>
+          Made by
+          <a
+            class='orange-text text-lighten-3'
+            href='http://materializecss.com'
+          >Materialize</a>
+        </div>
+      </div>
+
+    </footer>
+
+    <!-- Compiled and minified JavaScript -->
+    {{! jquery library }}
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    {{! M script }}
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'
+    ></script>
+    {{! custom JavaScript }}
+    <script src='./js/init.js'></script>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src='/js/logout.js'></script>
+    {{/if}}
+
+  </body>
 
 </html>

@@ -1,20 +1,61 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models');
 
-//GET all Blog Posts by Users
+//GET all Comments by Users
 router.get('/user', async (req, res) => {
   try {
-    const postData = await User.findAll({
-      include: [{ model: Post }],
+    const commentData = await User.findAll({
+      include: [
+        {
+          model: Comment,
+          attributes: { exclude: ['password'] },
+        },
+      ],
     });
 
     // Return Error Message if no product is found
-    if (!postData) {
+    if (!commentData) {
       res.status(404).json({ message: "That User doesn't exist!" });
       return;
     }
     // Else Return Product Object
-    res.status(200).json(postData);
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//GET all Comments
+router.get('/', async (req, res) => {
+  try {
+    const commentData = await Comment.findAll();
+
+    // Return Error Message if no product is found
+    if (!commentData) {
+      res.status(404).json({ message: 'No Comments exist!' });
+      return;
+    }
+    // Else Return Product Object
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//GET all Comments by Posts
+router.get('/posts', async (req, res) => {
+  try {
+    const commentData = await Post.findAll({
+      include: [{ model: Comment }],
+    });
+
+    // Return Error Message if no product is found
+    if (!commentData) {
+      res.status(404).json({ message: "That User doesn't exist!" });
+      return;
+    }
+    // Else Return Product Object
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -22,69 +63,96 @@ router.get('/user', async (req, res) => {
 //GET all Posts by 1 User
 router.get('/user/:id', async (req, res) => {
   try {
-    const postData = await User.findByPk(req.params.id, {
-      include: [{ model: Post }],
+    const commentData = await User.findByPk(req.params.id, {
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Comment,
+        },
+      ],
     });
 
     // Return Error Message if no post is found
-    if (!postData) {
+    if (!commentData) {
       res.status(404).json({ message: "That User doesn't exist!" });
       return;
     }
     // Else Return Post Object
-    res.status(200).json(postData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET one post
+//GET Posts with User & Comments
+router.get('/allModels', async (req, res) => {
+  try {
+    const commentData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: { exclude: ['password'] },
+        },
+        {
+          model: Comment,
+        },
+      ],
+    });
+
+    // Return Error Message if no product is found
+    if (!commentData) {
+      res.status(404).json({ message: "That Post doesn't exist!" });
+      return;
+    }
+    // Else Return Product Object
+    res.status(200).json(commentData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//GET one Comment
 router.get('/:id', async (req, res) => {
   // find one post by its `id` value
   try {
-    const postData = await Post.findByPk(req.params.id);
+    const commentData = await Comment.findByPk(req.params.id);
 
     // Return error if no Post found
-    if (!postData) {
+    if (!commentData) {
       res.status(404).json({ message: 'No Posts found with this id!' });
+      return;
     }
 
-    // Else Return Post Object
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    // Returnpostss to handlebars template engine:
-    res.render('item', {
-      posts,
-      logged_in: req.session.logged_in,
-    });
-  } catch (error) {
-    res.status(500).json(error);
+    // Else Return Comment Object
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-//CREATE A post
+//CREATE A Comment
 router.post('/', async (req, res) => {
   try {
-    const postData = await Post.create(req.body);
-    res.status(200).json(postData);
+    const commentData = await Comment.create(req.body);
+    res.status(200).json(commentData);
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-// UPDATE a post by its `id` value
+// UPDATE a comment by its `id` value
 router.put('/:id', async (req, res) => {
   try {
-    const postData = await Post.update(req.body, {
+    const commentData = await Comment.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    if (!postData) {
+    if (!commentData) {
       req.status(404).json({ message: "That Post doesn't exist!" });
       return;
     }
-    res.status(200).json(postData);
+    res.status(200).json(commentData);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -93,39 +161,20 @@ router.put('/:id', async (req, res) => {
 // DELETE a post by its `id` value
 router.delete('/:id', async (req, res) => {
   try {
-    const postData = await Post.destroy({
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
       },
     });
 
     // Return Error Message if no product is found
-    if (!postData) {
+    if (!commentData) {
       res.status(404).json({ message: "That Post doesn't exist!" });
       return;
     }
 
     // Else Return Product Object
-    res.status(200).json(postData);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-//GET one Post with comments:
-router.get('/comments/:id', async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [{ model: Comment }],
-    });
-
-    // Return Error Message if no product is found
-    if (!postData) {
-      res.status(404).json({ message: "That Post doesn't exist!" });
-      return;
-    }
-    // Else Return Product Object
-    res.status(200).json(postData);
+    res.status(200).json(commentData);
   } catch (error) {
     res.status(500).json(error);
   }

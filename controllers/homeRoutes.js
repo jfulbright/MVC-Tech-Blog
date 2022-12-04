@@ -1,10 +1,32 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+//GET all Posts for Homepage
+router.get('/', withAuth, async (req, res) => {
   try {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Comment,
+        },
+      ],
+    });
+
+    // Return Error Message if no posts are found
+    if (!postData) {
+      res.status(404).json({ message: "That User doesn't exist!" });
+      return;
+    }
+
+    // Serialize data so the template can read it
+    const posts = postData.map((post) => post.get({ plain: true }));
+
     res.render('homepage', {
+      posts,
       logged_in: req.session.logged_in,
     });
   } catch (err) {

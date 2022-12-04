@@ -1,0 +1,47 @@
+<div class='col l4'>
+
+  <div class='card hoverable card blue-grey darken-1'>
+
+    <div class='card-content white-text'>
+
+      <h5 class='card-title'>
+        {{post_title}}
+      </h5>
+      <div class='light post-content'>
+        {{post_body}}
+      </div>
+      <br />
+
+      <div class='comment-content green-text text-lighten-3'>
+        <h6><span class='left green-text'><i
+              class='material-icons'
+            >chat</i>
+          </span>
+          &nbsp Comments:
+        </h6>
+        <p>
+          {{#each comments as |comment|}}
+            <blockquote>{{format_date comment.createdAt}}
+              -
+              {{comment.comment_body}}
+            </blockquote>
+          {{/each}}
+        </p>
+      </div>
+    </div>
+    <div class='card-action grey-text lighten-5'>
+      <p'>
+        &nbsp Posted by
+        {{user.name}}
+        on
+        {{format_date createdAt}}
+        <span class='small material-icons left'>face</span>
+        <button
+          class='secondary-content material-icons trash_btn light-red-text'
+          data-id='{{id}}'
+        >delete</button>
+      </p>
+    </div>
+  </div>
+
+</div>
