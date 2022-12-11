@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
       res.status(404).json({ message: "That User doesn't exist!" });
       return;
     }
+
     // Else Return Product Object
     res.status(200).json(postData);
   } catch (err) {

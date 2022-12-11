@@ -7,9 +7,7 @@ router.get('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
-        {
-          model: User,
-        },
+        { model: User, attributes: { exclude: ['password'] } },
         {
           model: Comment,
         },
@@ -28,6 +26,7 @@ router.get('/', withAuth, async (req, res) => {
     res.render('homepage', {
       posts,
       logged_in: req.session.logged_in,
+      sessionID: req.session.user_id,
     });
   } catch (err) {
     res.status(500).json(err);

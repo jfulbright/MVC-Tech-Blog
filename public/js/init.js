@@ -3,6 +3,7 @@ $(document).ready(function () {
 });
 
 function toggleModal() {
-  var instance = M.Modal.getInstance($('#modal1'));
-  instance.ope();
+  console.log('function called');
+  var instance = M.Modal.getInstance($('#modalSignup'));
+  instance.open();
 }

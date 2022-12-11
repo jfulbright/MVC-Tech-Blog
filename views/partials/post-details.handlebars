@@ -11,11 +11,24 @@
         {{post_body}}
       </div>
       <br />
-
-      <div class='comment-content green-text text-lighten-3'>
-        <h6><span class='left green-text'><i
-              class='material-icons'
-            >chat</i>
+      <div class='grey-text lighten-5'>
+        <p>
+          &nbsp Posted by
+          {{user.name}}
+          on
+          {{format_date createdAt}}
+          <span class='small material-icons left'>face</span>
+          <span
+            class='post-list secondary-content material-icons trash_btn'
+            data-id='{{id}}'
+          >
+            delete
+          </span>
+        </p>
+      </div>
+      <br />
+      <div class='comment-content card-action green-text text-lighten-2'>
+        <h6><span class='left green-text'><i class='material-icons'>chat</i>
           </span>
           &nbsp Comments:
         </h6>
@@ -29,19 +42,7 @@
         </p>
       </div>
     </div>
-    <div class='card-action grey-text lighten-5'>
-      <p'>
-        &nbsp Posted by
-        {{user.name}}
-        on
-        {{format_date createdAt}}
-        <span class='small material-icons left'>face</span>
-        <button
-          class='secondary-content material-icons trash_btn light-red-text'
-          data-id='{{id}}'
-        >delete</button>
-      </p>
-    </div>
+
   </div>
 
 </div>

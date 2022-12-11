@@ -37,6 +37,12 @@
           <li><a href='/'>Homepage</a></li>
           <!-- Conditionally render login or logout links -->
           {{#if logged_in}}
+            <li><a
+                href='#'
+                class='modal-trigger'
+                onclick='toggleModal'
+                data-target='modalPost'
+              >Create a Blog Post</a></li>
             <li><a href='/profile'>My profile</a></li>
 
             <li><button
@@ -65,15 +71,7 @@
           <h5 class='header col s12 light'>A reflection of my journey to
             full-stack develpment</h5>
         </div>
-        {{#if logged_in}}
-          <div class='row center'>
-            <a
-              href='http://materializecss.com/getting-started.html'
-              id='download-button'
-              class='btn-large waves-effect waves-light orange'
-            >Create a Post</a>
-          </div>
-        {{/if}}
+        {{#if logged_in}}{{/if}}
         <br /><br />
 
       </div>
@@ -142,6 +140,7 @@
     ></script>
     {{! custom JavaScript }}
     <script src='./js/init.js'></script>
+    <script src='./js/post.js'></script>
 
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
