@@ -5,6 +5,7 @@ const { Post, Comment, User } = require('../../models');
 router.get('/user', async (req, res) => {
   try {
     const postData = await User.findAll({
+      attributes: { exclude: ['password'] },
       include: [{ model: Post }],
     });
 
@@ -19,10 +20,32 @@ router.get('/user', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//GET all Blog Posts
+router.get('/', async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      include: [{ model: User, attributes: { exclude: ['password'] } }],
+    });
+
+    // Return Error Message if no product is found
+    if (!postData) {
+      res.status(404).json({ message: "That User doesn't exist!" });
+      return;
+    }
+
+    // Else Return Product Object
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //GET all Posts by 1 User
 router.get('/user/:id', async (req, res) => {
   try {
     const postData = await User.findByPk(req.params.id, {
+      attributes: { exclude: ['password'] },
       include: [{ model: Post }],
     });
 

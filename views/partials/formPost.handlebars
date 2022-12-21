@@ -1,0 +1,47 @@
+<!-- Modal Trigger -->
+<div class='row center'>
+  <a
+    href='#'
+    class='modal-trigger btn-large waves-effect waves-light orange'
+    onclick='toggleModal'
+    data-target='modalPost'
+  >Create a Post</a>
+</div>
+<!-- Modal Structure -->
+<div id='modalPost' class='modal'>
+  <div class='modal-content'>
+    <a
+      href='#!'
+      class='modal-close btn-floating btn-small waves-effect right waves-light red lighten-2 2rem'
+    ><i class='material-icons'>close</i></a>
+    <h4 id='info-modal-heading'>Create a Blog Post</h4>
+    <p id='info-modal-content'>
+      <form class='post-form'>
+        <div class=''>
+          <label for='post_title'>Title:</label>
+          <input class='' type='text' id='post_title' />
+        </div>
+        <div class=''>
+          <label for='post_body'>Body:</label>
+          <textarea class='' type='text' id='post_body'></textarea>
+        </div>
+        <div class='form-group hidden'>
+          <label class='white-text' for='user_id'>user_id:</label>
+          <input
+            class='form-input white-text'
+            type='text'
+            id='user_id'
+            name='user_id'
+            value='{{sessionID}}'
+          >{{sessionID}}</input>
+        </div>
+        <button
+          class='btn waves-effect waves-light right'
+          type='submit'>
+          <i class="material-icons right">send</i>
+        Submit</button>
+      </form>
+    </p>
+    <br />
+  </div>
+</div>

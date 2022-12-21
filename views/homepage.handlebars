@@ -1,3 +1,13 @@
-<div>
-  <p>Homepage</p>
+
+{{> formPost}}
+<div class='row'>
+  <div class='col l12'>
+    
+    <!-- Render the Blog Posts sub layout -->
+    {{#each posts as |post|}}
+          {{> post-details}}
+    {{/each}}
+  </div>
 </div>
+
+        

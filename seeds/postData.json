@@ -1,17 +1,22 @@
 [
   {
-    "post_title": "My First Blog Post",
-    "post_body": "Hello World",
+    "post_title": "API Resources",
+    "post_body": "Server-side APIs allow developers to access data that companies and organizations provide through URLs, or endpoints. Developers can create applications that make requests to these endpoints, which respond with the requested data. Developers can then use this data in their own applications.",
     "user_id": "1"
   },
   {
-    "post_title": "My Second Blog Post",
-    "post_body": "Hello World Again",
+    "post_title": "MySQL Reference Guide",
+    "post_body": "MySQL is widely considered the most reliable, scaleable, and developer-friendly open source relational database management system. It powers the back end of many popular social, streaming, and service web applications.",
     "user_id": "1"
   },
   {
-    "post_title": "My First Blog Post",
-    "post_body": "Hello World",
+    "post_title": "How to Use API Keys",
+    "post_body": "Server-side APIs allow developers to access data made available by third-party companies and organizations. To use this data, developers can create applications that make requests to URLs, or endpoints, provided by those third-party organizations—and in turn, the endpoints respond with the requested data.",
+    "user_id": "2"
+  },
+  {
+    "post_title": "Set Up MongoDB Atlas",
+    "post_body": "MongoDB Atlas is a cloud-based database service that is created and maintained by MongoDB. It works with hosting services such as AWS, Azure, and Google Cloud to help users provision, maintain, and secure new databases for their applications.",
     "user_id": "2"
   }
 ]

@@ -1,0 +1,39 @@
+<!-- Modal Trigger -->
+<a
+  href='#'
+  class='modal-trigger waves-effect waves-teal btn-flat blue-text text-darken-2'
+  onclick='toggleModal'
+  data-target='modalPost'
+>Create an Account</a>
+<!-- Modal Structure -->
+<div id='modalPost' class='modal'>
+  <div class='modal-content'>
+    <a
+      href='#!'
+      class='modal-close btn-floating btn-small waves-effect right waves-light red lighten-2 2rem'
+    ><i class='material-icons'>close</i></a>
+    <h4 id='info-modal-heading'>Create your blog account</h4>
+    <p id='info-modal-content'>
+      <form class='signup-form'>
+        <div class=''>
+          <label for='name-signup'>Name:</label>
+          <input class='' type='text' id='name-signup' />
+        </div>
+        <div class=''>
+          <label for='email-signup'>Email:</label>
+          <input class='' type='text' id='email-signup' />
+        </div>
+        <div class=''>
+          <label for='password-signup'>Password:</label>
+          <input class='' type='password' id='password-signup' />
+        </div>
+        <button
+          class='btn waves-effect waves-light left'
+          type='submit'
+        >signup</button>
+      </form>
+    </p>
+    <br />
+  </div>
+</div>
+<!-- Modal Structure -->
