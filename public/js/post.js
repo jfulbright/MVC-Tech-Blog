@@ -5,7 +5,6 @@ let postComment;
 deletePost = document.querySelectorAll('.post-list');
 deleteComment = document.querySelectorAll('.comment-list');
 postComment = document.querySelectorAll('.comment-form');
-document.querySelector('.post-form').addEventListener('submit', newFormHandler); // don't call if not logged in
 
 const newFormHandler = async (event) => {
   event.preventDefault();
@@ -104,4 +103,13 @@ for (var i = 0; i < deleteComment.length; i++) {
 // Iterate through all New Comment Form instances and add a listener:
 for (var i = 0; i < postComment.length; i++) {
   postComment[i].addEventListener('submit', newCommentHandler);
+}
+
+// don't call event listener if not logged in
+// document.querySelector('.post-form').addEventListener('submit', newFormHandler);
+
+if (window.location.contains !== '/login') {
+  document
+    .querySelector('.post-form')
+    .addEventListener('submit', newFormHandler);
 }
