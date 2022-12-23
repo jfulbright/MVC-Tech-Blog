@@ -158,7 +158,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE a post by its `id` value
+// DELETE a comment by its `id` value
 router.delete('/:id', async (req, res) => {
   try {
     const commentData = await Comment.destroy({

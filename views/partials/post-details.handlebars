@@ -1,6 +1,6 @@
 <div class='col l4'>
 
-  <div class='card hoverable card blue-grey darken-1'>
+  <div class='card hoverable card blue-grey darken-1 hoverable'>
 
     <div class='card-content white-text'>
 
@@ -19,7 +19,7 @@
           {{format_date createdAt}}
           <span class='small material-icons left'>face</span>
           <span
-            class='post-list secondary-content material-icons trash_btn'
+            class='post-list secondary-content material-icons trash_btn white-text text-lighten-2'
             data-id='{{id}}'
           >
             delete
@@ -27,22 +27,62 @@
         </p>
       </div>
       <br />
-      <div class='comment-content card-action green-text text-lighten-2'>
-        <h6><span class='left green-text'><i class='material-icons'>chat</i>
-          </span>
-          &nbsp Comments:
-        </h6>
-        <p>
-          {{#each comments as |comment|}}
-            <blockquote>{{format_date comment.createdAt}}
-              -
-              {{comment.comment_body}}
-            </blockquote>
-          {{/each}}
-        </p>
+      <div class='comment-content card-action'>
+        <!-- Modal Trigger -->
+        <div class='row' data-id='{{id}}'>
+          <button
+            class='modal-trigger btn waves-effect waves-light hoverable'
+            onclick='toggleModal'
+            data-target='modalComment-{{id}}'
+          >Add Comment
+            <i class='material-icons right'>chat</i>
+          </button>
+        </div>
+
+        <!-- Comments Modal Structure -->
+        <div id='modalComment-{{id}}' class='modal'>
+          <div class='modal-content'>
+            <a
+              href='#!'
+              class='modal-close btn-floating btn-small waves-effect right waves-light red lighten-2 2rem'
+            ><i class='material-icons'>close</i></a>
+            <h4 id='info-modal-heading' class='cyan-text text-darken-2'>Add
+              Comment</h4>
+            <p id='info-modal-content'>
+              <form data-id='{{id}}' class='comment-form'>
+                <div class=''>
+                  <label for='comment_body'>Comment:</label>
+                  <textarea class='' type='text' id='comment_body'></textarea>
+                </div>
+                <button
+                  class='btn waves-effect waves-light right'
+                  type='submit'
+                >
+                  <i class='material-icons right'>chat</i>
+                  Post Comment</button>
+              </form>
+            </p>
+            <br />
+          </div>
+        </div>
+
+        {{#each comments as |comment|}}
+          <div class='grey-text text-lighten-2 row'>{{format_date
+              comment.createdAt
+            }}
+            -
+            {{comment.comment_body}}
+            <span
+              class='comment-list left red-text material-icons trash_btn white-text text-lighten-2'
+              data-id='{{id}}'
+            >
+              delete
+            </span>
+          </div>
+        {{/each}}
+
       </div>
     </div>
 
   </div>
-
 </div>
