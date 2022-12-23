@@ -106,9 +106,8 @@ for (var i = 0; i < postComment.length; i++) {
 }
 
 // don't call event listener if not logged in
-// document.querySelector('.post-form').addEventListener('submit', newFormHandler);
 
-if (window.location.contains !== '/login') {
+if (window.location.href.indexOf('/login') < 1) {
   document
     .querySelector('.post-form')
     .addEventListener('submit', newFormHandler);
