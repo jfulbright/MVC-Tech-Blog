@@ -4,6 +4,10 @@
 ## Description:
 This is a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. I built this site completely from scratch and deployed it to Heroku. This app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
+## Deployed App
+ - [Heroku](https://fathomless-ravine-62062.herokuapp.com/login)
+
+
 ## Table of Contents:
 - [MVC Tech Blog](#mvc-tech-blog)
   - [Description:](#description)
